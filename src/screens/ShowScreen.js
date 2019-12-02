@@ -1,6 +1,7 @@
 import React, {useContext} from 'react';
 import { View, Text, StyleSheet, FlatList, Button, TouchableOpacity } from 'react-native';
 import { Context} from '../context/BlogContext';
+import { EvilIcons } from '@expo/vector-icons';
 
 
 const ShowScreen = ({ navigation }) => {
@@ -12,7 +13,7 @@ const ShowScreen = ({ navigation }) => {
   return (
     <View>
       <Text>{blogPost.title}</Text>
-
+        <Text>{blogPost.content}</Text>
     </View>
     );
 };
@@ -21,6 +22,16 @@ const ShowScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
 
 });
+
+ShowScreen.navigationOptions = ({navigation}) =>{
+  return {
+      headerRight: (
+       <TouchableOpacity onPress={() => navigation.navigate('Edit', { id: navigation.getParam('id')})} >
+        <EvilIcons name="pencil" size={35} />
+       </TouchableOpacity>
+        )
+  };
+};
 
 
 export default ShowScreen;
